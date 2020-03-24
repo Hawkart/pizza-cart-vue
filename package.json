@@ -1,0 +1,28 @@
+{
+  "name": "nuxt-t",
+  "version": "1.0.0",
+  "description": "Nuxt.js project",
+  "author": "Archibald Witwicky <a.kheygetyan@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.0",
+    "@nuxtjs/axios": "^5.9.5",
+    "js-cookie": "^2.2.1",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^4.19.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^4.0.0"
+  }
+}
