@@ -1,0 +1,26 @@
+@import 'variables';
+@import '~bootstrap/scss/bootstrap';
+@import '~sweetalert2/src/sweetalert2';
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+
+@import 'elements/card';
+@import 'elements/navbar';
+@import 'elements/buttons';
+@import 'elements/transitions';
+
+.card-footer .price{
+  line-height: 40px;
+}
+
+.number-input--controls>input[data-v-3580ff4f]{
+  padding-left: 2rem!important;
+  padding-right: 2rem!important;
+}
+.number-input--inline>input[data-v-3580ff4f] {
+  display: inline-block;
+  width: 6rem!important;
+  text-align: center;
+}
+.number-input__button[data-v-3580ff4f]{
+  width: 2rem!important;
+}
