@@ -8,6 +8,10 @@
 @import 'elements/buttons';
 @import 'elements/transitions';
 
+body{
+  background-color: #f0f5f9;
+}
+
 .card-footer .price{
   line-height: 40px;
 }
@@ -23,4 +27,19 @@
 }
 .number-input__button[data-v-3580ff4f]{
   width: 2rem!important;
+}
+.w-50px{
+  width: 50px !important;
+}
+
+@media (min-width: 1200px)
+{
+  .modal-dialog {
+    min-width: 800px;
+    margin: 1.75rem auto;
+  }
+}
+
+.money_format{
+  display: inline-block;
 }

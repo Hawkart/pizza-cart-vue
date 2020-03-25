@@ -15,14 +15,11 @@
       <div id="navbarToggler" class="collapse navbar-collapse">
         <ul class="navbar-nav">
           <currency-dropdown />
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li> -->
         </ul>
 
         <ul class="navbar-nav ml-auto">
           <li>
-            <ShoppingCart />
+            <ShoppingCartMini />
           </li>
           <!-- Authenticated -->
           <li v-if="user" class="nav-item dropdown">
@@ -66,11 +63,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import CurrencyDropdown from './CurrencyDropdown'
-import ShoppingCart from './ShoppingCart.vue';
+import ShoppingCartMini from "./ShoppingCartMini";
 
 export default {
   components: {
-    CurrencyDropdown, ShoppingCart
+    ShoppingCartMini,
+    CurrencyDropdown
   },
 
   data: () => ({

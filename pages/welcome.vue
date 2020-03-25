@@ -16,6 +16,7 @@
               :description="product.description"
               :image="product.image"
               :price="product.price"
+              :price_format="product.price_format"
             />
           </div>
 

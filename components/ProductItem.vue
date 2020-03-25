@@ -8,7 +8,7 @@
                 <p class="card-text">{{ description }}</p>
             </div>
             <div class="card-footer">
-                <span class="price">{{ price }}</span>
+                <span class="price">{{ price_format }}</span>
                 <div>
                     <vue-number-input v-model="quantity" :min="1" :max="100" inline controls></vue-number-input>
                     <div class="float-right">
@@ -29,7 +29,7 @@
         components: {
             VueNumberInput
         },
-        props: ['pid', 'title', 'image', 'description', 'price'],
+        props: ['pid', 'title', 'image', 'description', 'price', 'price_format'],
         data: () => ({
             quantity: 1
         }),
@@ -37,6 +37,8 @@
             addToCart(pid) {
                 let q = this.quantity;
                 this.$store.dispatch('cart/addItem', {id: pid, quantity: q});
+                this.$bus.$emit('update-basket')
+                this.quantity = 1;
             },
         },
     };
