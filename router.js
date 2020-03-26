@@ -7,7 +7,7 @@ Vue.use(Router)
 const page = path => () => import(`~/pages/${path}`).then(m => m.default || m)
 
 const routes = [
-  { path: '/', name: 'welcome', component: page('welcome.vue') },
+  { path: '/', name: 'welcome', component: page('index.vue') },
   { path: '/checkout', name: 'checkout', component: page('checkout.vue') },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },
