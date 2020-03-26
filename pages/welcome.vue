@@ -44,7 +44,6 @@ export default {
   },
 
   data: () => ({
-    title: process.env.appName,
     categories: []
   }),
 

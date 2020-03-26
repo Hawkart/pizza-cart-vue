@@ -1,6 +1,8 @@
 <template>
     <div>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#shoppingCart">Cart: {{ numInCart }} | {{total_format}}</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#shoppingCart">
+            Cart: {{ numInCart }} <span v-if="numInCart>0">| {{total_format}}</span>
+        </button>
 
         <div id="shoppingCart" class="modal fade">
             <div class="modal-dialog">
@@ -84,6 +86,11 @@
                 this.getCart();
             });
 
+            this.$bus.$on('clear-cart', () => {
+                this.cart = [];
+                this.total_format = 0;
+            });
+
             this.getCart();
         },
         methods: {
@@ -92,9 +99,14 @@
             },
             async getCart()
             {
-                let { data } = await axios.post('/cart', {'items': this.inCart});
-                this.$set(this, 'cart', data.items);
-                this.$set(this, 'total_format', data.total_format);
+                if(this.inCart.length>0) {
+                    let {data} = await axios.post('/cart', {'items': this.inCart});
+                    this.$set(this, 'cart', data.items);
+                    this.$set(this, 'total_format', data.total_format);
+                } else {
+                    this.$set(this, 'cart', []);
+                    this.$set(this, 'total_format', 0);
+                }
             }
         }
     };

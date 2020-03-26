@@ -66,6 +66,11 @@ export const mutations = {
     SET_CART(state, { cart }) {
         state.cart = JSON.stringify(cart)
     },
+
+    CLEAR(state) {
+        state.cart = [];
+        Cookies.set('cart', JSON.stringify(state.cart), { expires: 365 })
+    }
 }
 
 // actions
@@ -78,5 +83,8 @@ export const actions = {
     },
     removeItem(context, pid) {
         context.commit('REMOVE_FROM_CART', pid);
+    },
+    clear(context) {
+        context.commit('CLEAR');
     }
 }
