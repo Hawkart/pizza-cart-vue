@@ -5,37 +5,38 @@
  * @param  {String} key
  * @return {String|undefined}
  */
-export function cookieFromRequest (req, key) {
-  if (!req.headers.cookie) {
-    return
-  }
+export function cookieFromRequest(req, key) {
+    if (!req.headers.cookie) {
+        return
+    }
 
-  const cookie = req.headers.cookie.split(';').find(
-    c => c.trim().startsWith(`${key}=`)
-  )
+    const cookie = req.headers.cookie.split(';').find(
+        c => c.trim().startsWith(`${key}=`)
+    )
 
-  if (cookie) {
-    return cookie.split('=')[1]
-  }
+    if (cookie) {
+        return cookie.split('=')[1]
+    }
 }
 
 /**
  * https://router.vuejs.org/en/advanced/scroll-behavior.html
  */
-export function scrollBehavior (to, from, savedPosition) {
-  if (savedPosition) {
-    return savedPosition
-  }
+export function scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+        return savedPosition
+    }
 
-  let position = {}
+    let position = {}
 
-  if (to.matched.length < 2) {
-    position = { x: 0, y: 0 }
-  } else if (to.matched.some(r => r.components.default.options.scrollToTop)) {
-    position = { x: 0, y: 0 }
-  } if (to.hash) {
-    position = { selector: to.hash }
-  }
+    if (to.matched.length < 2) {
+        position = {x: 0, y: 0}
+    } else if (to.matched.some(r => r.components.default.options.scrollToTop)) {
+        position = {x: 0, y: 0}
+    }
+    if (to.hash) {
+        position = {selector: to.hash}
+    }
 
-  return position
+    return position
 }

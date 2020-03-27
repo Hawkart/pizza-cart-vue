@@ -8,46 +8,48 @@
 @import 'elements/buttons';
 @import 'elements/transitions';
 
-body{
+body {
   background-color: #f0f5f9;
 }
 
-.card-footer .price{
+.card-footer .price {
   line-height: 40px;
 }
 
-.number-input--controls>input[data-v-3580ff4f]{
-  padding-left: 2rem!important;
-  padding-right: 2rem!important;
+.number-input--controls > input[data-v-3580ff4f] {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
 }
-.number-input--inline>input[data-v-3580ff4f] {
+
+.number-input--inline > input[data-v-3580ff4f] {
   display: inline-block;
-  width: 6rem!important;
+  width: 6rem !important;
   text-align: center;
 }
-.number-input__button[data-v-3580ff4f]{
-  width: 2rem!important;
+
+.number-input__button[data-v-3580ff4f] {
+  width: 2rem !important;
 }
-.w-50px{
+
+.w-50px {
   width: 50px !important;
 }
 
-@media (min-width: 1200px)
-{
+@media (min-width: 1200px) {
   .modal-dialog {
     min-width: 800px;
     margin: 1.75rem auto;
   }
 }
 
-.money_format{
+.money_format {
   display: inline-block;
 }
 
-.order-detail{
+.order-detail {
   margin-bottom: 20px;
 }
 
-.order-detail label{
+.order-detail label {
   font-weight: bold;
 }

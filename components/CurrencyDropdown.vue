@@ -16,7 +16,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import {mapGetters} from 'vuex'
 
     export default {
         computed: mapGetters({
@@ -25,8 +25,8 @@
         }),
 
         methods: {
-            setCurrency (currency) {
-                if(this.currency!==currency) {
+            setCurrency(currency) {
+                if (this.currency !== currency) {
                     this.$store.dispatch('currency/setCurrency', {currency})
                     this.$bus.$emit('currency-changed')
                 }

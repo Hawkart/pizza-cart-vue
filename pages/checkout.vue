@@ -46,24 +46,27 @@
                             <div class="form-group row">
                                 <label class="col-md-12 col-form-label">{{ $t('name') }}</label>
                                 <div class="col-md-12">
-                                    <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }" type="text" name="name" class="form-control">
-                                    <has-error :form="form" field="name" />
+                                    <input v-model="form.name" :class="{ 'is-invalid': form.errors.has('name') }"
+                                           type="text" name="name" class="form-control">
+                                    <has-error :form="form" field="name"/>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-12 col-form-label">{{ $t('email') }}</label>
                                 <div class="col-md-12">
-                                    <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" type="email" name="email" class="form-control">
-                                    <has-error :form="form" field="email" />
+                                    <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }"
+                                           type="email" name="email" class="form-control">
+                                    <has-error :form="form" field="email"/>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-12 col-form-label">Phone</label>
                                 <div class="col-md-12">
-                                    <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }" type="text" name="phone" class="form-control">
-                                    <has-error :form="form" field="phone" />
+                                    <input v-model="form.phone" :class="{ 'is-invalid': form.errors.has('phone') }"
+                                           type="text" name="phone" class="form-control">
+                                    <has-error :form="form" field="phone"/>
                                 </div>
                             </div>
                         </card>
@@ -74,32 +77,37 @@
                             <div class="form-group row">
                                 <label class="col-md-12 col-form-label">Choose Delivery method</label>
                                 <div class="col-md-12">
-                                    <select v-model="form.delivery" :class="{ 'is-invalid': form.errors.has('delivery') }" name="delivery" class="form-control">
+                                    <select v-model="form.delivery"
+                                            :class="{ 'is-invalid': form.errors.has('delivery') }" name="delivery"
+                                            class="form-control">
                                         <option v-for="delivery in deliveries" v-bind:value="delivery.value">
                                             {{ delivery.description }}
                                         </option>
                                     </select>
-                                    <has-error :form="form" field="delivery" />
+                                    <has-error :form="form" field="delivery"/>
                                 </div>
                             </div>
 
                             <div class="form-group row" v-if="form.delivery==1">
                                 <label class="col-md-12 col-form-label">Address</label>
                                 <div class="col-md-12">
-                                    <textarea v-model="form.address" :class="{ 'is-invalid': form.errors.has('address') }" name="address" class="form-control"></textarea>
-                                    <has-error :form="form" field="address" />
+                                    <textarea v-model="form.address"
+                                              :class="{ 'is-invalid': form.errors.has('address') }" name="address"
+                                              class="form-control"></textarea>
+                                    <has-error :form="form" field="address"/>
                                 </div>
                             </div>
 
                             <div class="form-group row">
                                 <label class="col-md-12 col-form-label">Choose Payment method</label>
                                 <div class="col-md-12">
-                                    <select v-model="form.payment" :class="{ 'is-invalid': form.errors.has('payment') }" name="payment" class="form-control">
+                                    <select v-model="form.payment" :class="{ 'is-invalid': form.errors.has('payment') }"
+                                            name="payment" class="form-control">
                                         <option v-for="payment in payments" v-bind:value="payment.value">
                                             By {{ payment.description }}
                                         </option>
                                     </select>
-                                    <has-error :form="form" field="payment" />
+                                    <has-error :form="form" field="payment"/>
                                 </div>
                             </div>
                         </card>
@@ -112,12 +120,12 @@
                             Products subtotal: <b>{{prods_total_format}}</b><br/>
                             Delivery price: <b>{{delivery_price_format}}</b><br/>
                             Total: <b>
-                                <money-format :value="parseFloat(prods_total+delivery_price)"
+                            <money-format :value="parseFloat(prods_total+delivery_price)"
                                           :currency-code='currency'
                                           :subunit-value=true
                                           :hide-subunits=false>
-                                </money-format>
-                            </b>
+                            </money-format>
+                        </b>
 
                             <div class="form-group row">
                                 <div class="col-md-7 d-flex">
@@ -146,7 +154,7 @@
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import {mapGetters} from 'vuex'
     import Form from 'vform'
     import axios from "axios";
     import MoneyFormat from 'vue-money-format'
@@ -154,8 +162,8 @@
     export default {
         layout: 'auth',
 
-        head () {
-            return { title: "Checkout" }
+        head() {
+            return {title: "Checkout"}
         },
 
         components: {
@@ -203,23 +211,22 @@
             this.getCart();
         },
 
-        created () {
-            if(this.authenticated) {
+        created() {
+            if (this.authenticated) {
                 this.form.keys().forEach((key) => {
-                    if(this.user[key])
+                    if (this.user[key])
                         this.form[key] = this.user[key]
                 })
             }
         },
 
-        methods:{
-            async order()
-            {
+        methods: {
+            async order() {
                 this.form.items = this.cart;
 
                 try {
                     let {data} = await this.form.post('/cart/checkout');
-                    if(parseInt(data.id)>0) {
+                    if (parseInt(data.id) > 0) {
                         this.order_confirm = true;
                         this.order_number = data.id;
                         this.$store.dispatch('cart/clear');
@@ -229,27 +236,22 @@
                     return
                 }
             },
-            async getDeliveries()
-            {
-                let { data } = await axios.get('/deliveries');
+            async getDeliveries() {
+                let {data} = await axios.get('/deliveries');
                 this.$set(this, 'deliveries', data);
             },
-            async getPayments()
-            {
-                let { data } = await axios.get('/payments');
+            async getPayments() {
+                let {data} = await axios.get('/payments');
                 this.$set(this, 'payments', data);
             },
-            async calculateDelivery(id)
-            {
-                let { data } = await axios.post('/deliveries/'+id+"/calculate", {'items': this.inCart});
+            async calculateDelivery(id) {
+                let {data} = await axios.post('/deliveries/' + id + "/calculate", {'items': this.inCart});
                 this.$set(this, 'delivery_price', data.price);
                 this.$set(this, 'delivery_price_format', data.price_format);
             },
-            async getCart()
-            {
-                if(this.inCart.length>0)
-                {
-                    let { data } = await axios.post('/cart', {'items': this.inCart});
+            async getCart() {
+                if (this.inCart.length > 0) {
+                    let {data} = await axios.post('/cart', {'items': this.inCart});
                     this.$set(this, 'cart', data.items);
                     this.$set(this, 'prods_total', data.total);
                     this.$set(this, 'prods_total_format', data.total_format);

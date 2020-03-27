@@ -26,7 +26,7 @@
             VueNumberInput
         },
         props: ['product', 'quantity'],
-        data () {
+        data() {
             return {
                 q: this.quantity
             }

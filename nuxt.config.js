@@ -1,6 +1,6 @@
 require('dotenv').config()
-const { join } = require('path')
-const { copySync, removeSync } = require('fs-extra')
+const {join} = require('path')
+const {copySync, removeSync} = require('fs-extra')
 
 module.exports = {
     mode: 'spa',
@@ -17,23 +17,23 @@ module.exports = {
         title: process.env.APP_NAME,
         titleTemplate: '%s - ' + process.env.APP_NAME,
         meta: [
-            { charset: 'utf-8' },
-            { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+            {charset: 'utf-8'},
+            {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+            {hid: 'description', name: 'description', content: 'Nuxt.js project'}
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+            {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
         ]
     },
 
-    loading: { color: '#007bff' },
+    loading: {color: '#007bff'},
 
     router: {
         middleware: ['locale', 'check-auth']
     },
 
     css: [
-        { src: '~assets/sass/app.scss', lang: 'scss' }
+        {src: '~assets/sass/app.scss', lang: 'scss'}
     ],
 
     plugins: [
@@ -44,7 +44,7 @@ module.exports = {
         '~plugins/bus',
         '~plugins/fontawesome',
         '~plugins/nuxt-client-init',
-        { src: '~plugins/bootstrap', mode: 'client' }
+        {src: '~plugins/bootstrap', mode: 'client'}
     ],
 
     modules: [
@@ -54,7 +54,7 @@ module.exports = {
     build: {
         extractCSS: true,
 
-        extend (config, { isDev, isClient }) {
+        /*extend (config, { isDev, isClient }) {
             if (isDev && isClient) {
                 config.module.rules.push({
                     enforce: 'pre',
@@ -63,12 +63,12 @@ module.exports = {
                     exclude: /(node_modules)/
                 })
             }
-        }
+        }*/
     },
 
     hooks: {
         generate: {
-            done (generator) {
+            done(generator) {
                 // Copy dist files to public/_nuxt
                 if (generator.nuxt.options.dev === false && generator.nuxt.options.mode === 'spa') {
                     const publicDir = join(generator.nuxt.options.rootDir, 'public', '_nuxt')

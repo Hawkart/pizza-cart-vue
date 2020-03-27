@@ -44,7 +44,8 @@
                     <div class="modal-footer">
                         <button class="btn btn-secondary" data-dismiss="modal">Keep shopping</button>
 
-                        <router-link :to="{ name: 'checkout' }" class="btn btn-primary" data-dismiss="modal" v-if="cart.length>0">
+                        <router-link :to="{ name: 'checkout' }" class="btn btn-primary" data-dismiss="modal"
+                                     v-if="cart.length>0">
                             Checkout
                         </router-link>
                     </div>
@@ -56,7 +57,7 @@
 
 <script>
     import axios from "axios";
-    import { mapGetters } from 'vuex'
+    import {mapGetters} from 'vuex'
     import ShoppingCartItem from "../components/ShoppingCartItem";
 
     export default {
@@ -97,9 +98,8 @@
             removeFromCart(index) {
                 this.$store.dispatch('cart/removeItem', index);
             },
-            async getCart()
-            {
-                if(this.inCart.length>0) {
+            async getCart() {
+                if (this.inCart.length > 0) {
                     let {data} = await axios.post('/cart', {'items': this.inCart});
                     this.$set(this, 'cart', data.items);
                     this.$set(this, 'total_format', data.total_format);

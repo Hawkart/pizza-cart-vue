@@ -17,59 +17,59 @@ export const mutations = {
 
         let exist = false;
         for (var i = 0; i < state.cart.length; i++) {
-            if(state.cart[i].id===product.id) {
-                state.cart[i].quantity+=parseInt(product.quantity);
+            if (state.cart[i].id === product.id) {
+                state.cart[i].quantity += parseInt(product.quantity);
                 exist = true;
             }
         }
 
-        if(!exist) {
-            state.cart.push({"id":product.id, "quantity":product.quantity});
+        if (!exist) {
+            state.cart.push({"id": product.id, "quantity": product.quantity});
         }
 
         swal.fire({
             type: 'success',
-            text:  'Item has been added!',
+            text: 'Item has been added!',
             showConfirmButton: false,
             timer: 1500
         });
 
-        Cookies.set('cart', JSON.stringify(state.cart), { expires: 365 })
+        Cookies.set('cart', JSON.stringify(state.cart), {expires: 365})
     },
 
     REMOVE_FROM_CART(state, pid) {
 
         for (var i = 0; i < state.cart.length; i++) {
-            if(state.cart[i].id===pid) {
+            if (state.cart[i].id === pid) {
                 state.cart.splice(i, 1);
             }
         }
 
-        Cookies.set('cart', JSON.stringify(state.cart), { expires: 365 })
+        Cookies.set('cart', JSON.stringify(state.cart), {expires: 365})
     },
 
     SET_ITEM_CART(state, product) {
 
         for (var i = 0; i < state.cart.length; i++) {
-            if(state.cart[i].id===product.id) {
+            if (state.cart[i].id === product.id) {
                 state.cart[i].quantity = product.quantity;
             }
         }
 
-        Cookies.set('cart', JSON.stringify(state.cart), { expires: 365 })
+        Cookies.set('cart', JSON.stringify(state.cart), {expires: 365})
     },
 
-    GET_CART(state, { cart }) {
+    GET_CART(state, {cart}) {
         state.cart = JSON.parse(cart)
     },
 
-    SET_CART(state, { cart }) {
+    SET_CART(state, {cart}) {
         state.cart = JSON.stringify(cart)
     },
 
     CLEAR(state) {
         state.cart = [];
-        Cookies.set('cart', JSON.stringify(state.cart), { expires: 365 })
+        Cookies.set('cart', JSON.stringify(state.cart), {expires: 365})
     }
 }
 
